@@ -1,5 +1,6 @@
 package com.lenovo.smarttraffic.ui.activity;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.lenovo.smarttraffic.InitApp;
 import com.lenovo.smarttraffic.R;
+import com.lenovo.smarttraffic.TolssHome.MyDialog;
 
 /**
  * @author Amoly
@@ -30,6 +33,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private EditText mEditTextPassword;
     private TextInputLayout mTextInputLayoutName;
     private TextInputLayout mTextInputLayoutPswd;
+    private Context mContext;
 
 
     @Override
@@ -40,6 +44,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         initToolBar(findViewById(R.id.toolbar), true, getString(R.string.login));
 
         mTextInputLayoutName = findViewById(R.id.textInputLayoutName);
@@ -92,6 +99,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.network_setting, menu);
+        MyDialog dialog = new MyDialog(this,0.8,0.8,R.layout.network_content);
+        dialog.Do(v -> {
+
+        }).show();
         return true;
     }
 

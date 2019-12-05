@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.lenovo.smarttraffic.ui.activity.BaseActivity;
@@ -100,6 +101,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initView() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         mToolbar = findViewById(R.id.toolbar);
         mDrawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -169,6 +171,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.item_3:
                 string = "item3";
+                break;
+            case R.id.item_4:
+                string = "第一题";
                 break;
             case R.id.nav_setting:
                 string = "设置";

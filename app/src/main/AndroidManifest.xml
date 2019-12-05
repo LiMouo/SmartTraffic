@@ -54,7 +54,10 @@
 
         <activity android:name=".ui.activity.LoginActivity"
             android:label="@string/login"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            />
 
         <activity android:name=".ui.activity.Item1Activity"
             android:configChanges="orientation|screenSize|uiMode"
