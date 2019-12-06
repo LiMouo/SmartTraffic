@@ -1,9 +1,11 @@
 package com.lenovo.smarttraffic.ui.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.lenovo.smarttraffic.InitApp;
 import butterknife.ButterKnife;
@@ -18,6 +20,13 @@ import me.yokeyword.fragmentation.SupportActivity;
 
 public abstract class BaseActivity extends SupportActivity{
 
+    public static String Ip, Port, UrlHead, user = "user1";
+    //初始化标识
+    public static boolean isFirst = true;
+    private static SharedPreferences sp;
+    public static int Trip_money = 0;//汽车余额阈值设置
+    public static String username;
+    private static SharedPreferences.Editor editor;
     private static final String TAG = "BaseActivity";
     private Unbinder unbind;
     /**
@@ -36,6 +45,19 @@ public abstract class BaseActivity extends SupportActivity{
         setContentView(getLayout());
         unbind = ButterKnife.bind(this);
         InitApp.getInstance().addActivity(this);
+
+        if (isFirst){
+            sp = getSharedPreferences("MyAppCompatActivity", MODE_PRIVATE);
+            editor = sp.edit();
+            Ip = sp.getString("Ip", "127.0.0.1");
+            Port = sp.getString("Port", "8088");
+            Port = sp.getString("Port", "8088");
+            UrlHead = "http://" + Ip + ":" + Port + "/transportservice/action/";
+            username = sp.getString("username", "");
+            SharedPreferences s = getSharedPreferences("UserInfo",MODE_PRIVATE);
+            Trip_money = s.getInt("TripMoney",0);
+            isFirst = false;
+        }
     }
 
 
@@ -75,4 +97,13 @@ public abstract class BaseActivity extends SupportActivity{
         super.onStop();
     }
     protected abstract int getLayout();
+
+    protected void SetPort(String ip, String port) {
+            Ip = ip;
+            Port = port;
+            UrlHead = "http://" + Ip + ":" + Port + "/transportservice/action/";
+            editor.putString("Ip", Ip);
+            editor.putString("Port", Port);
+            editor.apply();
+    }
 }

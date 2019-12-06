@@ -22,6 +22,7 @@ import com.lenovo.smarttraffic.ui.activity.Item1Activity;
 import com.lenovo.smarttraffic.ui.activity.LoginActivity;
 import com.lenovo.smarttraffic.ui.fragment.DesignFragment;
 import com.lenovo.smarttraffic.ui.fragment.MainContentFragment;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -29,7 +30,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * @date 2019/4/11.
  * description：
  */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawer;
@@ -53,7 +54,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initView();
         initData();
         if (savedInstanceState != null) {
-            loadMultipleRootFragment(R.id.container,0,mMainContent, mDesignFragment);   //使用fragmentation加载根组件
+            //使用fragmentation加载根组件
+            loadMultipleRootFragment(R.id.container, 0, mMainContent, mDesignFragment);
             // 恢复 recreate 前的位置
             showFragment(savedInstanceState.getInt(POSITION));
             bottom_navigation.setSelectedItemId(savedInstanceState.getInt(SELECT_ITEM));
@@ -69,22 +71,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (index) {
             case FRAGMENT_MAIN:
                 mToolbar.setTitle(R.string.title_main);
-                if (mMainContent == null){
+                if (mMainContent == null) {
                     mMainContent = MainContentFragment.getInstance();
-                    ft.add(R.id.container,mMainContent,MainContentFragment.class.getName());
-                }else {
+                    ft.add(R.id.container, mMainContent, MainContentFragment.class.getName());
+                } else {
                     ft.show(mMainContent);
                 }
                 break;
             case FRAGMENT_DESIGN:
                 mToolbar.setTitle(R.string.creative_design);
-                if (mDesignFragment == null){
+                if (mDesignFragment == null) {
                     mDesignFragment = DesignFragment.getInstance();
-                    ft.add(R.id.container,mDesignFragment,DesignFragment.class.getName());
-                }else {
+                    ft.add(R.id.container, mDesignFragment, DesignFragment.class.getName());
+                } else {
                     ft.show(mDesignFragment);
                 }
                 break;
+                default:
+                    break;
         }
         ft.commit();
 
@@ -119,13 +123,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
         mDrawer.addDrawerListener(toggle);
         bottom_navigation.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.action_main:
                     showFragment(FRAGMENT_MAIN);
                     break;
                 case R.id.action_creative:
                     showFragment(FRAGMENT_DESIGN);
                     break;
+                    default:
+                        break;
             }
             return true;
         });
@@ -134,7 +140,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressedSupport() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {    /*打开或关闭左边的菜单*/
+        /*打开或关闭左边的菜单*/
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
 //            super.onBackPressedSupport();
@@ -142,7 +149,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    /*是否退出项目*/
+    /**是否退出项目*/
     private void showExitDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("提示");
@@ -158,7 +165,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         /*设置选中item事件*/
         int id = item.getItemId();
         String string = null;
-        switch (id){
+        switch (id) {
             case R.id.nav_account:
                 string = "个人";
                 break;
@@ -181,17 +188,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.nav_about:
                 string = "关于";
                 break;
+                default:
+                    break;
         }
-        if (!TextUtils.isEmpty(string))
-        Toast.makeText(InitApp.getInstance(), "你点击了"+"\""+string+"\"", Toast.LENGTH_SHORT).show();
-//        mDrawer.closeDrawer(GravityCompat.START);
+        if (!TextUtils.isEmpty(string)) {
+            {
+                Toast.makeText(InitApp.getInstance(), "你点击了" + "\"" + string + "\"", Toast.LENGTH_SHORT).show();
+            }
+        }
+        //mDrawer.closeDrawer(GravityCompat.START);
         mDrawer.closeDrawers();
         return true;
     }
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.ivAvatar){    /*点击头像跳转登录界面*/
+        /*点击头像跳转登录界面*/
+        if (view.getId() == R.id.ivAvatar) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
