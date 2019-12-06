@@ -66,18 +66,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void showFragment(int index) {
 //        position = index;
+        /*beginTransaction 在与此FragmentManager相关的Fragment上开始一系列编辑操作。  打开事务
+        getSupportFragmentManager 返回用于与与此活动关联的片段进行交互的FragmentManager。 获取fragment管理器
+        ft 进行碎片
+        */
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         hideFragment(ft);
         switch (index) {
+            //0
             case FRAGMENT_MAIN:
                 mToolbar.setTitle(R.string.title_main);
                 if (mMainContent == null) {
+                    //如果页面实例为空，就创建一个新的
                     mMainContent = MainContentFragment.getInstance();
                     ft.add(R.id.container, mMainContent, MainContentFragment.class.getName());
                 } else {
                     ft.show(mMainContent);
                 }
                 break;
+                //1
             case FRAGMENT_DESIGN:
                 mToolbar.setTitle(R.string.creative_design);
                 if (mDesignFragment == null) {
@@ -96,6 +103,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void hideFragment(FragmentTransaction ft) {
         // 如果不为空，就先隐藏起来
+        //隐藏，然后显示用户进行的操作
         if (mMainContent != null) {
             ft.hide(mMainContent);
         }
@@ -106,22 +114,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initView() {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //标题
         mToolbar = findViewById(R.id.toolbar);
+        //侧滑菜单布局
         mDrawer = findViewById(R.id.drawer_layout);
+        //<!--侧滑布局控件-->
         NavigationView navigationView = findViewById(R.id.nav_view);
+        //主页面，创意设计
         bottom_navigation = findViewById(R.id.bottom_navigation);
+        //头像 圆形图像视图
         CircleImageView imageView = navigationView.getHeaderView(0).findViewById(R.id.ivAvatar);
+        //设置标题
         setSupportActionBar(mToolbar);
+        //头像点击事件
         imageView.setOnClickListener(this);
         /*设置选择item监听*/
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initData() {
+        //设置
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        //将抽屉指示器/功能的状态与链接的DrawerLayout同步。
         toggle.syncState();
+        //将指定的侦听器添加到将通知抽屉事件的侦听器列表。
         mDrawer.addDrawerListener(toggle);
+
         bottom_navigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.action_main:
