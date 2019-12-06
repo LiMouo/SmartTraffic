@@ -1,9 +1,13 @@
 package com.lenovo.smarttraffic;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +22,9 @@ public class InitApp extends MultiDexApplication {
 //    private static Context AppContext;
     private static InitApp instance;
     private Set<Activity> allActivities;
+    private String TAG = "InitApp";
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     public static synchronized InitApp getInstance() {
         return instance;
@@ -57,6 +64,10 @@ public class InitApp extends MultiDexApplication {
         if (allActivities != null) {
             synchronized (allActivities) {
                 for (Activity act : allActivities) {
+                    /*preferences = getSharedPreferences("MyAppCompatActivity", MODE_PRIVATE);
+                    editor = preferences.edit();
+                    editor.putInt("isImage",1);
+                    editor.apply();*/
                     act.finish();
                 }
             }
