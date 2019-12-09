@@ -24,7 +24,8 @@ public abstract class BaseActivity extends SupportActivity{
     //初始化标识
     public static boolean isFirst = true;
     private static SharedPreferences sp;
-    public static int Trip_money = 0;//汽车余额阈值设置
+    //汽车余额阈值设置
+    public static int Trip_money = 0;
     public static String username;
     private static SharedPreferences.Editor editor;
     private static final String TAG = "BaseActivity";

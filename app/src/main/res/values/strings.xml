@@ -23,18 +23,21 @@
     <string name="item1">item1</string>
     <string name="item2">item2</string>
     <string name="item3">item3</string>
-    <string name="item4">第一题</string>
+    <string name="item4">第十题</string>
     <string name="title_item_main">Tab</string>
     <string name="main_home">主页面</string>
     <string name="creative_design">创意设计</string>
     <string name="title_main">主页</string>
+
+    <!--测试-->
+    <string name="nav_drawer_layout">Drawer</string>
+
     <!--tab选项名称-->
     <string-array name="tab_names">
         <item>第一页</item>
         <item>第二页</item>
         <item>第三页</item>
     </string-array>
-
 
 
     <!-- Example General settings -->
@@ -93,7 +96,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 

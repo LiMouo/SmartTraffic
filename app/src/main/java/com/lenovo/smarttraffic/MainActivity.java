@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.lenovo.smarttraffic.BusQueryCatalog.BusQueryActivity;
+import com.lenovo.smarttraffic.TestTools.DrawerHome.DrawerLayoutActivity;
 import com.lenovo.smarttraffic.ui.activity.BaseActivity;
 import com.lenovo.smarttraffic.ui.activity.Item1Activity;
 import com.lenovo.smarttraffic.ui.activity.LoginActivity;
@@ -159,7 +161,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressedSupport() {
-        /*打开或关闭左边的菜单*/
+        //打开或关闭左边的菜单
+        /* isDrawerOpen 检查给定的抽屉视图当前是否处于打开状态。
+        * 抽屉必须处于完全可见的状态才能被视为“打开”状态。如果没有给定重力的抽屉，此方法*将返回false。
+        * GravityCompat 兼容性填充程序，用于从中访问更新的功能
+        *
+        * closeDrawer 通过使指定的动画不在视线范围内来关闭它
+        * */
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START);
         } else {
@@ -199,7 +207,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 string = "item3";
                 break;
             case R.id.item_4:
-                string = "第一题";
+                string = "第十题";
+                startActivity(new Intent(this, BusQueryActivity.class));
                 break;
             case R.id.nav_setting:
                 string = "设置";
