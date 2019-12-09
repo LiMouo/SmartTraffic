@@ -52,7 +52,6 @@ public abstract class BaseActivity extends SupportActivity{
             editor = sp.edit();
             Ip = sp.getString("Ip", "127.0.0.1");
             Port = sp.getString("Port", "8088");
-            Port = sp.getString("Port", "8088");
             UrlHead = "http://" + Ip + ":" + Port + "/transportservice/action/";
             username = sp.getString("username", "");
             SharedPreferences s = getSharedPreferences("UserInfo",MODE_PRIVATE);

@@ -8,6 +8,14 @@
 
     tools:context=".BusQueryCatalog.BusQueryActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bus_toolbar"
+        android:background="@drawable/change_xml"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -56,15 +64,17 @@
             android:layout_weight="1"
             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
         android:padding="10dp">
+
         <ExpandableListView
             android:id="@+id/EL_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </LinearLayout>
