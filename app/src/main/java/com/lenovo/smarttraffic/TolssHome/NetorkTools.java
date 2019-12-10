@@ -1,6 +1,8 @@
 package com.lenovo.smarttraffic.TolssHome;
 
+import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
+import android.content.Context;
 
 import com.google.gson.Gson;
 import com.lenovo.smarttraffic.ui.activity.BaseActivity;
@@ -33,5 +35,19 @@ public class NetorkTools {
         String Data = response.body().string();
         response.close();
         return Data;
+    }
+
+    /**
+     * 创建等待对话框
+     * @param context  上下文
+     * @param msg  显示的提示消息
+     * @return   对话框对象
+     */
+    public static ProgressDialog WaitDialog(Context context, String msg) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("请稍等");
+        progressDialog.setMessage(msg);
+        progressDialog.setCancelable(true);
+        return progressDialog;
     }
 }

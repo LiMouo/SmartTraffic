@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.lenovo.smarttraffic.BusQueryCatalog.BusQueryActivity;
 import com.lenovo.smarttraffic.TestTools.DrawerHome.DrawerLayoutActivity;
+import com.lenovo.smarttraffic.ViolationHome.ViolationActivity;
 import com.lenovo.smarttraffic.ui.activity.BaseActivity;
 import com.lenovo.smarttraffic.ui.activity.Item1Activity;
 import com.lenovo.smarttraffic.ui.activity.LoginActivity;
@@ -209,6 +210,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.item_4:
                 string = "第十题";
                 startActivity(new Intent(this, BusQueryActivity.class));
+                break;
+            case R.id.item_5:
+                string = "第十二题";
+                startActivity(new Intent(this, ViolationActivity.class));
                 break;
             case R.id.nav_setting:
                 string = "设置";
