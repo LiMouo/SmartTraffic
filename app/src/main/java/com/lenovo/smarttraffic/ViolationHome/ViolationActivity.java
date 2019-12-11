@@ -49,6 +49,86 @@ public class ViolationActivity extends AppCompatActivity {
         QueryData();
     }
 
+    private void InitView() {
+        setContentView(R.layout.activity_violation);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        btn_query = findViewById(R.id.btn_query);
+        e_number = findViewById(R.id.e_number);
+        db = MySqLiteOpenHelper.getInstance(this).getWritableDatabase();
+    }
+
+    private void InitData() {
+        btn_query.setOnClickListener(view -> {
+            btn_query.setEnabled(false);
+            new Thread(() -> {
+                try {
+                    QueryInfo.clear();
+                    String number = e_number.getText().toString();
+                    Log.e(TAG, "number 的数据是 ：" + number);
+                    boolean isNull = true;
+                    for (int i = 0; i < AllInfo.size(); i++) {
+                        /*Log.e(TAG, i+"AllInfo.size()" + AllInfo.size() );*/
+                        if (AllInfo.get(i).getString("carnumber").equals("鲁" + number)) {
+                            /*Log.e(TAG, "AllInfo.get("+i+").getString(carNumber)"+AllInfo.get(i).getString("carnumber")
+                                    +"  " + number );*/
+                            QueryInfo.add(AllInfo.get(i));
+                            Log.e(TAG, "AllInfo.get("+i+")" + AllInfo.get(i) );
+                            isNull = false;
+                        }
+                    }
+                    if (isNull) {
+                        if (number.equals("")) {
+                            handler.post(() -> Toast.makeText(this, "请输入查询车牌号", Toast.LENGTH_SHORT).show());
+                        } else {
+                            handler.post(() -> Toast.makeText(this, "没有查询到" + number + "车的违章数据！", Toast.LENGTH_SHORT).show());
+                        }
+                    } else {
+                        handler.post(() -> {
+                            waitDialog = NetorkTools.WaitDialog(this, "正在查询");
+                            waitDialog.show();
+                        });
+                    Cursor cursor = db.query("Violation", new String[]{"carnumber"}, "carnumber == '鲁" + number + "'", null, null, null, null);
+                    if (!(cursor.getCount() > 0)) {
+                        for (int i = 0; i < QueryInfo.size(); i++) {
+                            ContentValues values = new ContentValues();
+                            JSONObject data = QueryInfo.get(i);
+                            values.put("carnumber", data.getString("carnumber"));
+                            values.put("pcode", data.getString("pcode"));
+                            values.put("paddr", data.getString("paddr"));
+                            values.put("pdatetime", data.getString("pdatetime"));
+                            db.insert("Violation", null, values);
+                        }
+                    }
+                        handler.post(()->{
+                            waitDialog.dismiss();
+                            Log.e(TAG, "检查"+"运行" );
+                            Bundle b = getIntent().getExtras();
+                            Log.e(TAG, "Bundle  b :" + b );
+                            if (b==null){
+                                Intent intent = new Intent(this,Violation_Result_2.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("carnumber","鲁"+number);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            }else {
+                                Intent intent = new Intent();
+                                Bundle bundle = new Bundle();
+                                bundle.putString("carnumber","鲁"+number);
+                                intent.putExtras(bundle);
+                                setResult(RESULT_OK,intent);
+                                finish();
+                            }
+                        });
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                handler.post(()->btn_query.setEnabled(true));
+            }).start();
+        });
+    }
+
+
     private void QueryData() {
         thread = new Thread(() -> {
             while (true) {
@@ -59,6 +139,7 @@ public class ViolationActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object = jsonArray.getJSONObject(i);
                         AllInfo.add(object);
+                        /*Log.e(TAG,  i+ "AllInfo 数据" + AllInfo );*/
                     }
                     break;
                 } catch (IOException e) {
@@ -76,68 +157,4 @@ public class ViolationActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void InitData() {
-        btn_query.setOnClickListener(view -> {
-            btn_query.setEnabled(false);
-            new Thread(() -> {
-                try {
-                    QueryInfo.clear();
-                    String number = e_number.getText().toString();
-                    Log.e(TAG, "number 的数据是 ：" + number);
-                    boolean isNull = true;
-                    for (int i = 0; i < AllInfo.size(); i++) {
-                        if (AllInfo.get(i).getString("carnumber").equals("鲁" + number)) {
-                            QueryInfo.add(AllInfo.get(i));
-                            isNull = false;
-                        }
-                    }
-                    Log.e(TAG, "isNull_1 是" + isNull);
-                    if (isNull) {
-                        Log.e(TAG, "isNull_2 是" + isNull);
-                        if (number.equals("")) {
-                            handler.post(() -> Toast.makeText(this, "请输入查询车牌号", Toast.LENGTH_SHORT).show());
-                        } else {
-                            handler.post(() -> Toast.makeText(this, "没有查询到" + number + "车的违章数据！", Toast.LENGTH_SHORT).show());
-                        }
-                        Log.e(TAG, "isNull_3 是" + isNull);
-                    } else {
-                        Log.e(TAG, "isNull_4 是" + isNull);
-                        handler.post(() -> {
-                            waitDialog = NetorkTools.WaitDialog(this, "正在查询");
-                            waitDialog.show();
-                        });
-                    }
-                    Cursor cursor = db.query("Violation", new String[]{"carnumber"}, "carnumber == '鲁" + number + "'", null, null, null, null);
-                    if (!(cursor.getCount() > 0)) {
-                        for (int i = 0; i < QueryInfo.size(); i++) {
-                            ContentValues values = new ContentValues();
-                            JSONObject data = QueryInfo.get(i);
-                            values.put("carnumber", data.getString("carnumber"));
-                            values.put("pcode", data.getString("pcode"));
-                            values.put("paddr", data.getString("paddr"));
-                            values.put("pdatetime", data.getString("pdatetime"));
-                            db.insert("Violation", null, values);
-                        }
-                    }
-                        /*handler.post(()->{
-                            waitDialog.dismiss();
-                            Bundle b = getIntent().getExtras();
-                            if (b==null){
-                                Intent intent = new Intent(this,Violation_ResultActivity.class)
-                            }
-                        });*/
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }).start();
-        });
-    }
-
-    private void InitView() {
-        setContentView(R.layout.activity_violation);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        btn_query = findViewById(R.id.btn_query);
-        e_number = findViewById(R.id.e_number);
-        db = MySqLiteOpenHelper.getInstance(this).getWritableDatabase();
-    }
 }
