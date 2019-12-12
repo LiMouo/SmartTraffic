@@ -3,6 +3,7 @@ package com.lenovo.smarttraffic.TolssHome;
 import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lenovo.smarttraffic.ui.activity.BaseActivity;
@@ -18,6 +19,8 @@ import okhttp3.Response;
 
 public class NetorkTools {
     private static Gson gson = new Gson();
+    private static boolean Toasting = false;
+    private static Toast toast;
     /**
      * 发送一个Post请求
      * @param url  目标url
@@ -49,5 +52,17 @@ public class NetorkTools {
         progressDialog.setMessage(msg);
         progressDialog.setCancelable(true);
         return progressDialog;
+    }
+
+    /**
+     *杜绝Toast重复弹出
+     **/
+    public static void Toast(Context context, String msg, boolean LongTime) {
+        if (Toasting)
+            toast.cancel();
+        toast = Toast.makeText(context, null, LongTime ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
+        toast.setText(msg);
+        toast.show();
+        Toasting = true;
     }
 }

@@ -26,14 +26,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViolationHome.Violation_Result_2"
+        <activity android:name=".ViolationHome.Violation_Result_3"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
             ></activity>
-        <activity android:name=".TrafficHome.TrafficActivity"
+        <activity
+            android:name=".ViolationHome.Violation_Result_2"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            />
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".TrafficHome.TrafficActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ViolationHome.Violation_Result"
             android:launchMode="singleTask"

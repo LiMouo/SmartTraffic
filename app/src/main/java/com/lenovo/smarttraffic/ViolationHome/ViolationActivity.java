@@ -105,7 +105,7 @@ public class ViolationActivity extends AppCompatActivity {
                             Bundle b = getIntent().getExtras();
                             Log.e(TAG, "Bundle  b :" + b );
                             if (b==null){
-                                Intent intent = new Intent(this,Violation_Result_2.class);
+                                Intent intent = new Intent(this,Violation_Result_3.class);
                                 Bundle bundle = new Bundle();
                                 bundle.putString("carnumber","鲁"+number);
                                 intent.putExtras(bundle);
