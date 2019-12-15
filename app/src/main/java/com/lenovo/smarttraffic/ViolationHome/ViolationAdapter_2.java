@@ -3,6 +3,7 @@ package com.lenovo.smarttraffic.ViolationHome;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class ViolationAdapter_2 extends RecyclerView.Adapter {
     private Listener listener = new Listener();
     private int reFreshId = 0;//处于选中状态的id
 
-    public ViolationAdapter_2(Context context, boolean isRight,List<Map> CardInfo) {
+    public ViolationAdapter_2(Context context, boolean isRight, List<Map> CardInfo) {
         this.context = context;
         this.isRight = isRight;
         this.CardInfo = CardInfo;
@@ -39,7 +40,7 @@ public class ViolationAdapter_2 extends RecyclerView.Adapter {
             }
         } else {
             if (viewType == 0) {
-                return new Title(LayoutInflater.from(context).inflate(R.layout.violation_result_title,parent,false));
+                return new Title(LayoutInflater.from(context).inflate(R.layout.violation_result_title, parent, false));
             } else {
                 return new RightViewHolder(LayoutInflater.from(context).inflate(R.layout.violation_result_right_container, parent, false));
             }
@@ -53,50 +54,49 @@ public class ViolationAdapter_2 extends RecyclerView.Adapter {
                 Title view = ((Title) holder);
                 view.T_title.setText("汽车资料卡片");
                 view.I_icon.setImageResource(R.drawable.plus);
-                if (listener.onPlusClick != null){
-                    view.I_icon.setOnClickListener(v->listener.onPlusClick.OnCLick());
+                if (listener.onPlusClick != null) {
+                    view.I_icon.setOnClickListener(v -> listener.onPlusClick.OnCLick());
                 }
             } else {
                 LeftViewHolder view = (LeftViewHolder) holder;
-                if (listener.onItemClick != null){
-                    view.L_root.setOnClickListener(v->listener.onItemClick.OnClick(v,position-1));
+                if (listener.onItemClick != null) {
+                    view.L_root.setOnClickListener(v -> listener.onItemClick.OnClick(v, position - 1));
                 }
-                if (listener.onReduceClick != null){
-                    view.I_icon.setOnClickListener(v->listener.onReduceClick.OnCLick(position-1));
+                if (listener.onReduceClick != null) {
+                    view.I_icon.setOnClickListener(v -> listener.onReduceClick.OnCLick(position - 1));
                 }
-                if(reFreshId == position-1 ){//需要处于点击状态，触发点击事件,
+                if (reFreshId == position - 1) {//需要处于点击状态，触发点击事件,
                     View reFreshView = view.L_root;
                     reFreshView.callOnClick();
                 }
 
-                Map info = CardInfo.get(position-1);
+                Map info = CardInfo.get(position - 1);
                 view.T_car_id.setText(info.get("carnumber").toString());
-                view.T_number.setText("未处理违章"+info.get("count").toString()+"次");
-                view.T_reduce.setText("扣"+info.get("reduce").toString()+"分");
-                view.T_money.setText("罚款"+info.get("money").toString()+"元");
+                view.T_number.setText("未处理违章" + info.get("count").toString() + "次");
+                view.T_reduce.setText("扣" + info.get("reduce").toString() + "分");
+                view.T_money.setText("罚款" + info.get("money").toString() + "元");
             }
         } else {
             if (position == 0) {
                 ((Title) holder).T_title.setText("违章详情");
             } else {
                 RightViewHolder view = (RightViewHolder) holder;
-                if(listener.onItemClick != null)
-                {
-                    view.L_root.setOnClickListener(v->listener.onItemClick.OnClick(v,position-1));
+                if (listener.onItemClick != null) {
+                    view.L_root.setOnClickListener(v -> listener.onItemClick.OnClick(v, position - 1));
                 }
-                Map info = CardInfo.get(position-1);
+                Map info = CardInfo.get(position - 1);
                 view.T_time.setText(info.get("time").toString());
                 view.T_road.setText(info.get("road").toString());
                 view.T_info.setText(info.get("info").toString());
-                view.T_reduce.setText("扣"+info.get("reduce").toString()+"分");
-                view.T_money.setText("罚款"+info.get("money").toString()+"元");
+                view.T_reduce.setText("扣" + info.get("reduce").toString() + "分");
+                view.T_money.setText("罚款" + info.get("money").toString() + "元");
             }
         }
     }
 
     @Override
     public int getItemCount() {
-        return CardInfo.size()+1;
+        return CardInfo.size() + 1;
     }
 
     class LeftViewHolder extends RecyclerView.ViewHolder {
@@ -150,30 +150,45 @@ public class ViolationAdapter_2 extends RecyclerView.Adapter {
         }
     }
 
-    private static class Listener{
+    private static class Listener {
         private OnItemClick onItemClick;
         private OnReduceClick onReduceClick;
         private OnPlusClick onPlusClick;
     }
+
     //点击项
-    public void setOnItemClick(OnItemClick onItemClick){
+    public void setOnItemClick(OnItemClick onItemClick) {
         this.listener.onItemClick = onItemClick;
     }
+
     //减号图标
-    public void setOnReduceClick(OnReduceClick onReduceClick){
+    public void setOnReduceClick(OnReduceClick onReduceClick) {
         this.listener.onReduceClick = onReduceClick;
     }
+
     //加号图标
-    public void setOnPlusClick(OnPlusClick onPlusClick){
+    public void setOnPlusClick(OnPlusClick onPlusClick) {
         listener.onPlusClick = onPlusClick;
     }
-    public interface OnPlusClick{
+
+    public interface OnPlusClick {
         void OnCLick();
     }
-    public interface OnReduceClick{
+
+    public interface OnReduceClick {
         void OnCLick(int position);
     }
-    public interface OnItemClick{
-        void OnClick(View v,int position);
+
+    public interface OnItemClick {
+        void OnClick(View v, int position);
+    }
+
+    public void RemoveItem(int position) {
+        this.reFreshId = position;
+        if (position == CardInfo.size())//删除的是最后一项，将处于选中状态的id改变为上一项
+        {
+            reFreshId = CardInfo.size() - 1;
+        }
+        notifyDataSetChanged();//更新视图
     }
 }

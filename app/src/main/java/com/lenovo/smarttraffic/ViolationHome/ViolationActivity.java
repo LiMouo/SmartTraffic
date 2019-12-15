@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -157,4 +158,33 @@ public class ViolationActivity extends AppCompatActivity {
         thread.start();
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        /* event.getRepeatCount() 检索事件的重复计数。对于按键按下事件，*是按键重复的次数，第一次*按
+        下是从0开始并从此处开始递增计数。对于按键事件，*始终等于零。对于多个关键事件，*这是已发生的向下/向上配对的数量*/
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 && getIntent().getExtras() != null){
+            Intent intent = new Intent();
+            Bundle bundle = new Bundle();
+            intent.putExtras(bundle);
+            //调用此选项可设置您的活动将返回到其*调用者的结果。
+            //RESULT_CANCELED 结果取消
+            setResult(RESULT_CANCELED,intent);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (thread != null && thread.isAlive()){
+            thread.interrupt();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        super.onDestroy();
+    }
 }
