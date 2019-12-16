@@ -7,17 +7,16 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.View;
 
-import java.lang.reflect.Type;
 
-public class ViewText extends View {
-
+public class ViewTraffic extends View {
+    public ViewTraffic(Context context) {
+        super(context);
+    }
     /*                              畅通       缓行      一般拥堵 中度拥堵    严重拥堵*/
     private String[] setColor = {"#6ab82e", "#ece93a", "#f49b25", "#e33532", "#b01e23"};
     private int[] count = new int[7];
 
-    public ViewText(Context context) {
-        super(context);
-    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
