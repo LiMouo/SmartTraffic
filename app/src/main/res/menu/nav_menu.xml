@@ -33,6 +33,14 @@
         android:id="@+id/item_5"
         android:icon="@drawable/ic_app_management_gray_24"
         android:title="@string/item5"/>
+    <item
+        android:id="@+id/item_6"
+        android:icon="@drawable/ic_app_management_gray_24"
+        android:title="@string/item6"/>
+    <item
+        android:id="@+id/item_7"
+        android:icon="@drawable/ic_app_management_gray_24"
+        android:title="@string/item7"/>
   </group>
 
   <group android:checkableBehavior="none"

@@ -102,7 +102,7 @@ public class BusQueryAdapter extends BaseExpandableListAdapter {
         //时间
         TextView T_time = convertView.findViewById(R.id.T_time);
         //距离
-        TextView T_number = convertView.findViewById(R.id.T_number);
+        TextView T_number = convertView.findViewById(R.id.T_number_tem);
         T_person.setText(ChildData[groupPosition].get(childPosition).get("carId")+"号("+ChildData[groupPosition].get(childPosition).get("person")+"人)");
         T_number.setText("距离站台"+ChildData[groupPosition].get(childPosition).get("distance")+"米");
         T_time.setText(ChildData[groupPosition].get(childPosition).get("time")+"分钟到达");

@@ -26,10 +26,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViolationHome.Violation_Result_3"
+        <activity android:name=".LifeAssistant_14.LifeAssistantActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
-            ></activity>
+            />
+
+        <service
+            android:name=".TrafficHome.Surroundings_Service"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".ViolationHome.Violation_Result_3"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ViolationHome.Violation_Result_2"
             android:launchMode="singleTask"

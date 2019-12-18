@@ -1,25 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    >
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:orientation="vertical"
-        >
-<com.lenovo.smarttraffic.TrafficHome.ViewText
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+        android:orientation="vertical">
+
+        <com.lenovo.smarttraffic.TrafficHome.ViewTraffic
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
-        ></LinearLayout>
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/Right_Traffic_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            >
+
+
+            <TextView
+                android:id="@+id/T_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2019——12——16"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="30dp"
+                android:padding="3dp"
+                />
+
+            <ImageButton
+                android:id="@+id/refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:background="#00000000"
+                android:src="@drawable/refresh" />
+
+
+
+            <TextView
+                android:id="@+id/T_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="星期一"
+                android:layout_below="@+id/T_time"
+                android:layout_marginLeft="30dp"
+                android:padding="3dp"
+                />
+            <TextView
+                android:id="@+id/T_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温度:"
+                android:layout_toRightOf="@+id/T_week"
+                android:layout_below="@+id/T_time"
+                android:layout_marginLeft="5dp"
+                android:padding="3dp"
+                />
+            <TextView
+                android:id="@+id/T_number_tem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/T_temperature"
+                android:layout_below="@+id/T_time"
+                android:text="19"
+                android:layout_marginTop="3dp"
+                />
+            <TextView
+                android:id="@+id/C_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ℃"
+                android:layout_below="@+id/T_time"
+                android:layout_toRightOf="@id/T_number_tem"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/T_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相对湿度:"
+                android:layout_below="@+id/T_time"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/C_1"
+                android:layout_marginLeft="8dp"
+                />
+            <TextView
+                android:id="@+id/t_number_hum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17"
+                android:layout_below="@id/T_time"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/T_humidity"
+                />
+
+            <TextView
+                android:layout_toRightOf="@id/t_number_hum"
+                android:id="@+id/tv23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" %"
+                android:layout_below="@+id/T_time"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/pm2.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PM2.5 : "
+                android:layout_below="@+id/T_week"
+                android:padding="3dp"
+                android:layout_marginLeft="30dp"
+                />
+            <TextView
+                android:id="@+id/t_number_pm25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17"
+                android:layout_below="@+id/T_week"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/pm2.5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" μg/m³"
+                android:layout_below="@+id/T_week"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/t_number_pm25"
+                />
+            <TextView
+                android:id="@+id/T_Indicate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="道路拥挤程度示意："
+                android:layout_below="@+id/pm2.5"
+                android:layout_marginLeft="30dp"
+                android:padding="3dp"
+                />
+
+            <TextView
+                android:id="@+id/happening_1"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="严重拥堵:"
+                android:layout_below="@+id/T_Indicate"
+                android:layout_marginLeft="33dp"
+
+                />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="#b01e23"
+                android:layout_below="@+id/T_Indicate"
+
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/happening_1"
+                />
+            <TextView
+                android:id="@+id/happening_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中度拥堵:"
+                android:layout_below="@+id/happening_1"
+                android:layout_marginLeft="33dp"
+
+                />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="#e33532"
+                android:layout_below="@+id/happening_1"
+                android:layout_marginTop="1dp"
+                android:layout_toRightOf="@+id/happening_1"
+                />
+            <TextView
+                android:id="@+id/happening_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一般拥堵:"
+                android:layout_below="@+id/happening_2"
+                android:layout_marginLeft="33dp"
+                />
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="#f49b25"
+                android:layout_below="@+id/happening_2"
+                android:layout_marginTop="1.5dp"
+                android:layout_toRightOf="@+id/happening_1"
+                />
+            <TextView
+                android:id="@+id/happening_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="缓行:"
+                android:layout_below="@+id/happening_3"
+                android:layout_marginTop="1.5dp"
+                android:layout_marginLeft="61dp"
+                />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="#ece93a"
+                android:layout_below="@+id/happening_3"
+                android:layout_marginTop="2dp"
+                android:layout_toRightOf="@+id/happening_1"
+                />
+            <TextView
+                android:id="@+id/happening_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="畅通:"
+                android:layout_marginTop="1.5dp"
+                android:layout_below="@+id/happening_4"
+                android:layout_marginLeft="61dp"
+                />
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="#6ab82e"
+                android:layout_below="@+id/happening_4"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/happening_1"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/Right_Traffic_2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/Image_1"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:padding="1dp"
+                android:background="@drawable/jiaojing1" />
+
+            <ImageView
+                android:id="@+id/Image_2"
+                android:layout_width="50dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:padding="1dp"
+                android:layout_toRightOf="@+id/Image_1"
+                android:background="@drawable/jiaojing2"
+                />
+
+            <TextView
+                android:id="@+id/t123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500米"
+                android:layout_toRightOf="@+id/Image_2"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="13dp"
+                />
+
+            <ImageView
+                android:id="@+id/img123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/scale"
+                android:layout_toRightOf="@+id/Image_2"
+                android:layout_below="@+id/t123"
+                android:layout_marginLeft="10dp"
+                android:layout_centerInParent="true"
+                />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
