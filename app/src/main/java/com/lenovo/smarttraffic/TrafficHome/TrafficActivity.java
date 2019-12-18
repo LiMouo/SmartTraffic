@@ -1,26 +1,20 @@
 package com.lenovo.smarttraffic.TrafficHome;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lenovo.smarttraffic.BusQueryCatalog.Gson_surroundings;
+import com.lenovo.smarttraffic.Gson.Surr_Gson;
 import com.lenovo.smarttraffic.R;
-import com.lenovo.smarttraffic.TolssHome.MySqLiteOpenHelper;
 import com.lenovo.smarttraffic.TolssHome.NetorkTools;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

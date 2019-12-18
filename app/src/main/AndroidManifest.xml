@@ -26,10 +26,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LifeAssistant_14.LifeAssistantActivity"
+        <activity
+            android:name=".LifeAssistant_14.LifeAssistantActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"
-            />
+            android:screenOrientation="landscape"></activity>
 
         <service
             android:name=".TrafficHome.Surroundings_Service"

@@ -1,4 +1,4 @@
-package com.lenovo.smarttraffic.TrafficHome;
+package com.lenovo.smarttraffic.Gson;
 
 import com.google.gson.annotations.SerializedName;
 
