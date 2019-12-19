@@ -1,5 +1,6 @@
 package com.lenovo.smarttraffic.LifeAssistant_14;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Handler;
@@ -19,15 +20,15 @@ import android.widget.TextView;
 
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.gson.Gson;
 import com.lenovo.smarttraffic.Gson.Left_Gson;
@@ -45,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LifeAssistantActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener,RadioGroup.OnCheckedChangeListener{
+public class LifeAssistantActivity extends Activity implements ViewPager.OnPageChangeListener,RadioGroup.OnCheckedChangeListener{
 
     private String URL_1 = "GetWeather.do";//天气情况
     private String URL_2 = "GetAllSense.do";//天气详情
@@ -65,6 +66,7 @@ public class LifeAssistantActivity extends AppCompatActivity implements ViewPage
     private int mNumber;
     /*private Thread */
     private XAxis mXAxis;
+    private BarChart mBarChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,7 +187,63 @@ public class LifeAssistantActivity extends AppCompatActivity implements ViewPage
 
     }
     //线图_2
-    private void SetData_2(int position){
+    
+    private void SetData_2(){
+        mBarChart = findViewById(R.id.MpChart_1);
+        //1.基本设置
+        mXAxis= mBarChart.getXAxis();
+        //如果是否应绘制沿轴的线，则将其设置为true。
+        mXAxis.setDrawAxisLine(true);
+        //将此设置为true可以绘制该轴的网格线
+        mXAxis.setDrawGridLines(false);
+        
+        mBarChart.setDrawGridBackground(false);
+        //如果是否应绘制沿轴的线，则将其设置为true。
+        mBarChart.getAxisLeft().setDrawAxisLine(false);
+        mBarChart.setTouchEnabled(false);//是否可以触摸
+        mBarChart.setScaleEnabled(true);//是否可以拖拽
+        mBarChart.setDragEnabled(true);//是否可以缩放
+        
+        //2. Y轴和比例尺
+        Description description = new Description();
+        description.setText("这是一个描述");
+        mBarChart.setDescription(description);
+        
+        mBarChart.getAxisLeft().setEnabled(false);
+        mBarChart.getAxisRight().setEnabled(false);
+        
+        //隐藏比例尺
+        Legend legend = mBarChart.getLegend();
+        legend.setEnabled(false);
+        
+        //X轴数据和显示位置
+        ArrayList<String> xValues = new ArrayList<>();
+        xValues.add("第一季度");
+        xValues.add("第二季度");
+        xValues.add("第三季度");
+        xValues.add("第四季度");
+        mXAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        //4. Y轴数据
+        ArrayList<BarEntry> yValues = new ArrayList<>();
+        yValues.add(new BarEntry(20,0));
+        yValues.add(new BarEntry(10,1));
+        yValues.add(new BarEntry(16,2));
+        yValues.add(new BarEntry(4,3));
+
+        //5.设置显示的数字为整形
+        BarDataSet dataSet = new BarDataSet(yValues,"");
+        dataSet.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float v) {
+                int n = (int) v;
+                return n + "";
+            }
+        });
+    }
+    
+    
+   /* private void SetData_2(int position){
         BarChart barChart = findViewById(R.id.MpChart_1);
 
         //1.基本设置
@@ -201,7 +259,7 @@ public class LifeAssistantActivity extends AppCompatActivity implements ViewPage
 
         //2.y轴和比例尺
 
-        /*barChart.setDescription();  //数据描述*/
+        *//*barChart.setDescription();  //数据描述*//*
         //setEnabled 设置启用
         barChart.getAxisLeft().setEnabled(false);
         barChart.getAxisRight().setEnabled(false);
@@ -244,5 +302,5 @@ public class LifeAssistantActivity extends AppCompatActivity implements ViewPage
 
         //7.显示，柱状图的宽度和动画效果
         BarData barData = new BarData(xValues,barDataSet);
-    }
+    }*/
 }
