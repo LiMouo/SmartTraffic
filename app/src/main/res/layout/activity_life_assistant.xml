@@ -93,8 +93,14 @@
             android:layout_weight="3"
             android:orientation="vertical"
             >
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/MpChart_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <LinearLayout
+            </com.github.mikephil.charting.charts.BarChart>
+
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -102,88 +108,93 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     >
-                    <TextView
-                        android:id="@+id/but_1"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="wrap_content"
+                    <RadioGroup
+                        android:id="@+id/RG_left"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:gravity="center"
-                        android:text="星期一"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期二"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期三"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期四"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期五"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期六"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
-                    <TextView
-                        android:id="@+id/but_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="#ffffff"
-                        android:text="星期天"
-                        android:gravity="center"
-                        android:textColor="@color/text_life_color_1"
-                        />
+                        android:orientation="horizontal"
+                        >
+                        <RadioButton
+                            android:id="@+id/but_1"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:gravity="center"
+                            android:text="昨天"
+                            android:button="@null"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                        <RadioButton
+                            android:id="@+id/but_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:text="今天"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                        <RadioButton
+                            android:id="@+id/but_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:text="明天"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                        <RadioButton
+                            android:id="@+id/but_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:text="周五"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                        <RadioButton
+                            android:id="@+id/but_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:text="周六"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                        <RadioButton
+                            android:id="@+id/but_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rb_selector"
+                            android:text="周日"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:textColor="@color/text_life_color_1"
+                            />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recy_life_1"
+            <android.support.v4.view.ViewPager
+                android:id="@+id/v_pager_life_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"/>-->
+
+
+
         </LinearLayout>
-
-
     </LinearLayout>
 
     <LinearLayout

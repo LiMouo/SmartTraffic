@@ -145,4 +145,8 @@ dependencies {
 
     //约束布局
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    //MPLineChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v4.10.3'
+    implementation files('libs/mpchartlib.jar')
 }
