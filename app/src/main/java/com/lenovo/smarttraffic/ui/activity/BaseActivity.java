@@ -32,6 +32,7 @@ public abstract class BaseActivity extends SupportActivity{
     private Unbinder unbind;
     /**
      * 初始化 Toolbar
+     * findViewById
      */
     public void initToolBar(Toolbar toolbar, boolean homeAsUpEnabled, String title) {
         toolbar.setTitle(title);
@@ -43,8 +44,8 @@ public abstract class BaseActivity extends SupportActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayout());
-        unbind = ButterKnife.bind(this);
+        setContentView(getLayout());//
+        unbind = ButterKnife.bind(this);//findViewById绑定插件
         InitApp.getInstance().addActivity(this);
 
         if (isFirst){

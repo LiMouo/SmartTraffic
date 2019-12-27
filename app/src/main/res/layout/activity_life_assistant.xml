@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/left_root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,7 +40,7 @@
                     android:id="@+id/number_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="19"
+                    android:text=""
                     android:textSize="48dp"
                     android:textColor="@color/text_life_color_1"
                     />
@@ -66,7 +67,7 @@
                     android:id="@+id/number_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="17-24"
+                    android:text=""
                     android:textSize="18dp"
                     android:textColor="@color/text_life_color_1"
                     android:layout_toRightOf="@+id/text_2"
@@ -93,106 +94,13 @@
             android:layout_weight="3"
             android:orientation="vertical"
             >
-            <com.github.mikephil.charting.charts.BarChart
+            <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/MpChart_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </com.github.mikephil.charting.charts.BarChart>
-
-            <!--<LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
                 >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                    <RadioGroup
-                        android:id="@+id/RG_left"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <RadioButton
-                            android:id="@+id/but_1"
-                            android:layout_marginLeft="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:gravity="center"
-                            android:text="昨天"
-                            android:button="@null"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                        <RadioButton
-                            android:id="@+id/but_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:text="今天"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                        <RadioButton
-                            android:id="@+id/but_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:text="明天"
-                            android:button="@null"
-                            android:gravity="center"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                        <RadioButton
-                            android:id="@+id/but_4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:text="周五"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                        <RadioButton
-                            android:id="@+id/but_5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:text="周六"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                        <RadioButton
-                            android:id="@+id/but_6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@drawable/rb_selector"
-                            android:text="周日"
-                            android:gravity="center"
-                            android:button="@null"
-                            android:textColor="@color/text_life_color_1"
-                            />
-                    </RadioGroup>
-                </LinearLayout>
-            </LinearLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/v_pager_life_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>-->
-
-
+            </com.github.mikephil.charting.charts.LineChart>
 
         </LinearLayout>
     </LinearLayout>
@@ -200,7 +108,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:orientation="vertical"
         >
         
@@ -222,13 +130,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            android:layout_weight="4"
+            android:layout_weight="1"
             >
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recy_life_2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
             </android.support.v7.widget.RecyclerView>
 
@@ -237,12 +145,72 @@
         <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_weight="3"
                     >
 
-                </LinearLayout>
+            <!--<com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>-->
 
+            <android.support.v4.view.ViewPager
+                android:id="@+id/VP_left"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="9" />
+
+            <RadioGroup
+                android:id="@+id/RG_left"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="bottom"
+                >
+                <RadioButton
+                    android:id="@+id/but_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/rb_selector"
+                    android:textSize="20dp"
+                    android:text="空气质量"/>
+                <RadioButton
+                    android:id="@+id/but_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/rb_selector"
+                    android:textSize="20dp"
+                    android:text="温度"/>
+                <RadioButton
+                    android:id="@+id/but_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:background="@drawable/rb_selector"
+                    android:textSize="20dp"
+                    android:text="相对湿度"/>
+                <RadioButton
+                    android:id="@+id/but_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@null"
+                    android:background="@drawable/rb_selector"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="二氧化碳"
+                    />
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
     </LinearLayout>

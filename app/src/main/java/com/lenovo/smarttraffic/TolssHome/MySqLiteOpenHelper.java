@@ -16,6 +16,9 @@ public class MySqLiteOpenHelper extends SQLiteOpenHelper {
             "CARID text,MONEY integer,balance integer,user text,date text,image bolb)";
     private static final String CREATE_TABLE_VIO = "create table Violation(id integer primary key autoincrement,"+
             "carnumber text,pcode text,paddr text,pdatetime text)";
+    private static final String CREATE_TABLE_WEATHER = "create table Weather(id integer primary key autoincrement,"+
+            "temperature integer,humidity integer,LightIntensity integer,co2 integer,pm2_5 integer,date text)";
+
 
     public MySqLiteOpenHelper(@Nullable Context context) {
         super(context, "INFO", null, version);
@@ -34,6 +37,7 @@ public class MySqLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_ACC);
         db.execSQL(CREATE_TABLE_VIO);
         db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_WEATHER);
     }
 
     @Override
@@ -43,11 +47,13 @@ public class MySqLiteOpenHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists Account");
         db.execSQL("drop table if exists Violation");
         db.execSQL("drop table if exists User");
+        db.execSQL("drop table if exists Weather");
         db.execSQL(CREATE_TABLE_ETC);
         db.execSQL(CREATE_TABLE_ENV);
         db.execSQL(CREATE_TABLE_ACC);
         db.execSQL(CREATE_TABLE_VIO);
         db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_WEATHER);
     }
 }
 

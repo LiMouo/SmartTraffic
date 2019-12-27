@@ -18,6 +18,10 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.lenovo.smarttraffic.BusQueryCatalog.BusQueryActivity;
+import com.lenovo.smarttraffic.DataAnalysis_15.DataAnalysisActivity;
+import com.lenovo.smarttraffic.DemoTest.LifeAssistant_14_test.LifeAssistant_14_test;
+import com.lenovo.smarttraffic.DemoTest.PieChartHome.PieChartDemoActivity;
+import com.lenovo.smarttraffic.ETC_HOME_1.ETCActivity;
 import com.lenovo.smarttraffic.LifeAssistant_14.LifeAssistantActivity;
 import com.lenovo.smarttraffic.TestTools.DrawerHome.DrawerLayoutActivity;
 import com.lenovo.smarttraffic.TrafficHome.TrafficActivity;
@@ -201,7 +205,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.item_1:
                 string = "item1";
-                startActivity(new Intent(this, Item1Activity.class));
+                startActivity(new Intent(this, ETCActivity.class));
                 break;
             case R.id.item_2:
                 string = "item2";
@@ -224,6 +228,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.item_7:
                 string = "第十四题";
                 startActivity(new Intent(this, LifeAssistantActivity.class));
+                break;
+            case R.id.item_8:
+                string = "第十五题";
+                startActivity(new Intent(this, DataAnalysisActivity.class));
+                break;
+            case R.id.item_9:
+                string = "测试";
+                startActivity(new Intent(this, PieChartDemoActivity.class));
                 break;
             case R.id.nav_setting:
                 string = "设置";

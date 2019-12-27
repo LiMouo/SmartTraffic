@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lenovo.smarttraffic">
-    <!-- 允许程序设置内置sd卡的写权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序获取网络状态 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 允许程序访问WiFi网络信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 允许程序读写手机状态和身份 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="LOCAT" /> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于访问网络，网络定位需要上网 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 用于申请调用A-GPS模块 -->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".InitApp"
@@ -26,16 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ETC_HOME_1.ETCActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape"
+            ></activity>
+        <activity
+            android:name=".DataAnalysis_15.DataAnalysisActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" />
+        <activity android:name=".DemoTest.PieChartHome.PieChartDemoActivity" />
+        <activity android:name=".DemoTest.LifeAssistant_14_test.LifeAssistant_14_test" />
         <activity
             android:name=".LifeAssistant_14.LifeAssistantActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="landscape"></activity>
-
-        <service
-            android:name=".TrafficHome.Surroundings_Service"
-            android:enabled="true"
-            android:exported="true" />
-
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ViolationHome.Violation_Result_3"
             android:launchMode="singleTask"
@@ -97,10 +84,37 @@
             android:configChanges="orientation|screenSize|uiMode"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- 离线地图key -->
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="bdc9db56ef3f82cb64db5c8212f0dddf" />
-    </application>
+
+        <service
+            android:name=".LifeAssistant_14.LifeAssistantActivityService"
+            android:enabled="true"
+            android:exported="true" /> <!-- 离线地图key -->
+        <service
+            android:name=".TrafficHome.Surroundings_Service"
+            android:enabled="true"
+            android:exported="true" />
+    </application> <!-- 允许程序访问CellID或WiFi热点来获取粗略的位置 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> <!-- 用于访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="LOCAT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

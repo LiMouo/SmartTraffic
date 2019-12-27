@@ -15,6 +15,7 @@ import java.util.Set;
  * @author Amoly
  * @date 2019/4/11.
  * description：
+ * 分包机制
  */
 public class InitApp extends MultiDexApplication {
 
@@ -72,8 +73,8 @@ public class InitApp extends MultiDexApplication {
                 }
             }
         }
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(0);
+        android.os.Process.killProcess(android.os.Process.myPid());//退出程序
+        System.exit(0);//结束虚拟机
     }
 
 }
